@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap";
 import Navigation from "../../components/Navigation/Navigation.tsx";
 import { Route, Routes } from "react-router-dom";
 import Contacts from "../../components/Contacts/Contacts.tsx";
+import ContactForm from "../../components/ContactForm/ContactForm.tsx";
 
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
       <Container>
         <Routes>
           <Route path="/" element={<Contacts/>}/>
+          <Route path="add-contact" element={<ContactForm/>}/>
         </Routes>
-        <span className="text-primary">TEST</span>
       </Container>
     </>
   )

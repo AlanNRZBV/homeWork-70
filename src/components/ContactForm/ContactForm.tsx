@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store.ts";
 import React from "react";
 import { addContactInfo } from "./contactFormSlice.ts";
+import { postContact } from "./contactFormThunk.ts";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
-
+  const navigate = useNavigate()
   const dispatch: AppDispatch = useDispatch()
   const contactState = useSelector((state: RootState)=>state.contactForm)
 
@@ -19,7 +21,8 @@ const ContactForm = () => {
 
   const submitHandler = (e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
-    console.log(contactState)
+    dispatch(postContact(contactState))
+    navigate('/')
   }
 
 

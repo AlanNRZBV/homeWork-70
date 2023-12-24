@@ -1,38 +1,41 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ContactFormState {
-  name: string,
-  phone: string,
-  email: string | null,
-  photoUrl: string,
-  isLoading?: boolean
+export interface ContactFormState {
+  name: string;
+  phone: string;
+  email: string;
+  photoUrl: string;
+  isLoading?: boolean;
 }
 
-export const initialState: ContactFormState={
-  name:'',
-  phone:'',
-  email:'',
-  photoUrl:'',
-  isLoading: false
-}
+export const initialState: ContactFormState = {
+  name: '',
+  phone: '',
+  email: '',
+  photoUrl: '',
+  isLoading: false,
+};
 
 export const contactFormSlice = createSlice({
-  name:'contactForm',
+  name: 'contactForm',
   initialState,
-  reducers:{
-    addContactInfo:(state, action: PayloadAction<{key:string, value:string}>)=>{
-      const {key, value} = action.payload
+  reducers: {
+    addContactInfo: (
+      state,
+      action: PayloadAction<{ key: string; value: string }>,
+    ) => {
+      const { key, value } = action.payload;
+
       return {
         ...state,
-        [key]: value
-      }
+        [key]: value,
+      };
     },
-    resetForm: ()=>{
-      return {...initialState}
-    }
+    resetForm: () => {
+      return { ...initialState };
+    },
+  },
+});
 
-  }
-})
-
-export const contactFormReducer = contactFormSlice.reducer
-export const {addContactInfo,resetForm}=contactFormSlice.actions
+export const contactFormReducer = contactFormSlice.reducer;
+export const { addContactInfo, resetForm } = contactFormSlice.actions;

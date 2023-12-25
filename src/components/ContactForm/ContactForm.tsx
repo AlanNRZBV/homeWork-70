@@ -1,8 +1,8 @@
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store.ts";
-import React from "react";
-import { addContactInfo } from "./contactFormSlice.ts";
+import React, { useEffect } from 'react';
+import { addContactInfo, checkInput } from './contactFormSlice.ts';
 import { postContact } from "./contactFormThunk.ts";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,7 @@ const ContactForm = () => {
   const navigate = useNavigate()
   const dispatch: AppDispatch = useDispatch()
   const contactState = useSelector((state: RootState)=>state.contactForm)
+  const isInputCorrect = useSelector((state:RootState)=>state.contactForm.isCorrect)
 
   const changeHandler = (e:React.ChangeEvent<HTMLInputElement>)=>{
     const userInput = {
@@ -21,9 +22,15 @@ const ContactForm = () => {
 
   const submitHandler = (e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
+    if(isInputCorrect){
     dispatch(postContact(contactState))
     navigate('/')
+    }
   }
+
+  useEffect(() => {
+    dispatch(checkInput())
+  }, [dispatch, contactState]);
 
 
   return (
@@ -47,7 +54,7 @@ const ContactForm = () => {
       <Form.Group className="mb-3">
         <img src="https://placehold.co/150x150" alt="profile picture" className="rounded-circle"/>
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" disabled={!isInputCorrect}>
         Submit
       </Button>
     </Form>

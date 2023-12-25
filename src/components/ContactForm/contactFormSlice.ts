@@ -6,6 +6,7 @@ export interface ContactFormState {
   email: string;
   photoUrl: string;
   isLoading?: boolean;
+  isCorrect?: boolean;
 }
 
 export const initialState: ContactFormState = {
@@ -14,6 +15,7 @@ export const initialState: ContactFormState = {
   email: '',
   photoUrl: '',
   isLoading: false,
+  isCorrect: false,
 };
 
 export const contactFormSlice = createSlice({
@@ -31,6 +33,12 @@ export const contactFormSlice = createSlice({
         [key]: value,
       };
     },
+    checkInput: (state) => {
+      const isNameCorrect = state.name.trim() !== '';
+      const isPhoneCorrect =
+        state.phone.trim() !== '' && state.phone.trim().length >= 10;
+      state.isCorrect = isNameCorrect && isPhoneCorrect;
+    },
     resetForm: () => {
       return { ...initialState };
     },
@@ -38,4 +46,5 @@ export const contactFormSlice = createSlice({
 });
 
 export const contactFormReducer = contactFormSlice.reducer;
-export const { addContactInfo, resetForm } = contactFormSlice.actions;
+export const { addContactInfo, resetForm, checkInput } =
+  contactFormSlice.actions;

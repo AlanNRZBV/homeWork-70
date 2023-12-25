@@ -3,8 +3,9 @@ import { FC } from 'react';
 import { AppDispatch } from '../../app/store.ts';
 import { useDispatch } from 'react-redux';
 import { toggleDisplay } from '../ContactModal/contactModalSlice.ts';
+import { fetchContact } from "../ContactModal/contactModalThunk.ts";
 
-const ContactsItem: FC<IContact> = ({ name, photoUrl }) => {
+const ContactsItem: FC<IContact> = ({ name, photoUrl ,id}) => {
   const dispatch: AppDispatch = useDispatch();
   // let userEmail
   //
@@ -13,10 +14,14 @@ const ContactsItem: FC<IContact> = ({ name, photoUrl }) => {
   // }else{
   //   userEmail = email
   // }
+  const clickOnContactHandle = ()=>{
+    dispatch(toggleDisplay())
+    dispatch(fetchContact(id))
+  }
 
   return (
     <div
-      onClick={() => dispatch(toggleDisplay())}
+      onClick={clickOnContactHandle}
       className="d-flex align-items-center border border-1 p-3 mb-3 rounded-3 shadow-sm w-50"
     >
       <img

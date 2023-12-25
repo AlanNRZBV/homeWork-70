@@ -19,3 +19,13 @@ export const fetchContacts = createAsyncThunk<void,undefined,{state: RootState}>
     }
   }
 )
+
+export const deleteContact = createAsyncThunk<void, string, {state: RootState}>(
+  'contacts/deleteOne', async (arg)=>{
+    try{
+      await axiosAPI.delete(`contacts/${arg}.json`)
+    }catch (error){
+      console.log('Caught on try - DELETE CONTACT - ', error)
+    }
+  }
+)

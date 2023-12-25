@@ -11,4 +11,4 @@ export interface IContactModal extends IContact {
   email:string,
 }
 
-export type ContactData = Omit<ContactFormState, 'isLoading'>
+export type ContactData = Omit<ContactFormState, 'isLoading', 'isCorrect'>

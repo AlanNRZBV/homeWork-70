@@ -1,5 +1,6 @@
 import { IContact } from '../../types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { fetchContacts } from "./contactsThunk.ts";
 
 interface ContactsState {
   contacts: IContact[];
@@ -16,11 +17,19 @@ export const contactsSlice = createSlice({
   initialState,
   reducers: {
     loadContacts: (state, action: PayloadAction<IContact[]>) => {
-      return {
-        ...state,
-        contacts: action.payload,
-      };
+      state.contacts = action.payload
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchContacts.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchContacts.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(fetchContacts.rejected, (state) => {
+      state.isLoading = false;
+    });
   },
 });
 

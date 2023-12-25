@@ -5,20 +5,15 @@ import { useEffect } from 'react';
 import { fetchContacts } from './contactsThunk.ts';
 import { Spinner } from 'react-bootstrap';
 import ContactModal from '../ContactModal/ContactModal.tsx';
-// import { checkIsEmpty } from './contactsSlice.ts';
 
 const Contacts = () => {
   const dispatch: AppDispatch = useDispatch();
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
-  // const isContactsEmpty = useSelector(
-  //   (state: RootState) => state.contacts.isEmpty,
-  // );
   const isContactsLoading = useSelector(
     (state: RootState) => state.contacts.isLoading,
   );
 
   useEffect(() => {
-    // dispatch(checkIsEmpty())
      dispatch(fetchContacts());
   }, [dispatch]);
 

@@ -1,5 +1,3 @@
-import { ContactFormState } from "./components/ContactForm/contactFormSlice.ts";
-
 export interface IContact {
   name:string,
   photoUrl:string,
@@ -11,7 +9,6 @@ export interface IContactModal extends IContact {
   email:string,
 }
 
-// export type ContactData = Omit<ContactFormState, 'isLoading', 'isCorrect'>
 
 export interface IContactData {
   name:string,

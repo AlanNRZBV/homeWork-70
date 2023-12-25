@@ -28,10 +28,10 @@ const ContactForm = () => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(isEditing){
-      console.log('EDITING')
-      dispatch(editContact(contactState))
-      navigate('/')
+    if (isEditing) {
+      console.log('EDITING');
+      dispatch(editContact(contactState));
+      navigate('/');
     }
 
     if (isInputCorrect) {

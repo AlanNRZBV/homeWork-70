@@ -7,10 +7,10 @@ export interface ContactFormState {
   phone: string;
   email: string;
   photoUrl: string;
-  id?: string
+  id?: string;
   isLoading?: boolean;
   isCorrect?: boolean;
-  isEditing?: boolean
+  isEditing?: boolean;
 }
 
 export const initialState: ContactFormState = {

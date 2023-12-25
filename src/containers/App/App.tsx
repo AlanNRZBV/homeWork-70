@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Contacts/>}/>
           <Route path="add-contact" element={<ContactForm/>}/>
+          <Route path="edit-contact/:id" element={<ContactForm/>}/>
         </Routes>
       </Container>
     </>

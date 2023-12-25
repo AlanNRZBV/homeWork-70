@@ -7,13 +7,7 @@ import { fetchContact } from "../ContactModal/contactModalThunk.ts";
 
 const ContactsItem: FC<IContact> = ({ name, photoUrl ,id}) => {
   const dispatch: AppDispatch = useDispatch();
-  // let userEmail
-  //
-  // if(email === ''){
-  //   userEmail = 'No email provided'
-  // }else{
-  //   userEmail = email
-  // }
+
   const clickOnContactHandle = ()=>{
     dispatch(toggleDisplay())
     dispatch(fetchContact(id))
